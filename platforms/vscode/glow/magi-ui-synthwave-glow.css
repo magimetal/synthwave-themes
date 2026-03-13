@@ -1,0 +1,36 @@
+/*
+  Optional neon glow pass for Magi UI Synthwave in VS Code.
+  Requires the "Custom CSS and JS Loader" extension to inject this file.
+*/
+
+.monaco-editor,
+.monaco-editor .view-line,
+.monaco-editor .mtk1,
+.monaco-editor .mtk4,
+.monaco-editor .mtk5,
+.monaco-editor .mtk6,
+.monaco-editor .mtk7,
+.monaco-editor .mtk8,
+.monaco-editor .mtk9,
+.monaco-editor .mtk10,
+.monaco-editor .mtk12,
+.monaco-editor .mtk14,
+.monaco-editor .mtk16,
+.monaco-editor .mtk18,
+.monaco-editor .mtk22,
+.monaco-editor .mtk24 {
+  text-shadow: 0 0 0.6px currentColor, 0 0 5px currentColor;
+}
+
+.monaco-editor .cursor {
+  box-shadow: 0 0 6px #d21e85;
+}
+
+.monaco-editor .selected-text,
+.monaco-editor .selectionHighlight {
+  box-shadow: inset 0 0 0 1px #9963ff;
+}
+
+.monaco-editor .view-overlays .current-line {
+  box-shadow: inset 0 0 18px rgba(210, 30, 133, 0.1);
+}
