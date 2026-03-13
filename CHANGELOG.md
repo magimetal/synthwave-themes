@@ -4,7 +4,8 @@ All notable changes to this project are documented in this file.
 
 ## [Unreleased]
 
-- No changes yet.
+### Changed
+- Rewrote the root `README.md` with a more personal and professional project narrative, design intent, and clearer multi-platform navigation.
 
 ## [2.1.0] - 2026-03-13
 
