@@ -4,6 +4,10 @@ All notable changes to this project are documented in this file.
 
 ## [Unreleased]
 
+- No changes yet.
+
+## [2.1.0] - 2026-03-13
+
 ### Added
 - Added a new Zed target at `platforms/zed` with a local-installable theme file: `themes/magi-ui-synthwave-zed.json`.
 - Added Zed platform documentation at `platforms/zed/README.md` and linked it from the workspace README.
