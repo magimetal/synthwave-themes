@@ -4,6 +4,11 @@ All notable changes to this project are documented in this file.
 
 ## [Unreleased]
 
+### Added
+- Added a new Slack target at `platforms/slack` with documented import strings in `themes/magi-ui-synthwave-slack.txt` (current 4-color and legacy 8-color compatibility formats).
+- Added Slack platform documentation at `platforms/slack/README.md` and linked it from the workspace README.
+- Expanded `AGENTS.md` with Slack platform paths, validation command, theme authoring rules, and current target inventory.
+
 ## [2.2.0] - 2026-03-13
 
 ### Added

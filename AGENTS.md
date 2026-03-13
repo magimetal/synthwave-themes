@@ -5,12 +5,13 @@ Guidance for coding agents operating in `magi-uI-synthwave`.
 ## 1) Repository Scope
 
 - This is a **multi-platform theme workspace**.
-- Currently implemented targets: `platforms/jetbrains`, `platforms/zed`, `platforms/opencode`, `platforms/ghostty`, and `platforms/vscode`.
+- Currently implemented targets: `platforms/jetbrains`, `platforms/zed`, `platforms/opencode`, `platforms/ghostty`, `platforms/vscode`, and `platforms/slack`.
 - JetBrains target is an IntelliJ Platform theme plugin (resources-first project).
 - Zed target is a file-based theme JSON package (no build toolchain required).
 - OpenCode target is a file-based theme JSON package (no build toolchain required).
 - Ghostty target is a file-based theme config package (no build toolchain required).
 - VS Code target is a manifest + theme JSON package (no build toolchain required).
+- Slack target is a plain-text import-string package (no build toolchain required).
 - There is currently no application runtime code (no Kotlin/Java source trees).
 
 ## 2) Rule Sources Discovered
@@ -46,6 +47,9 @@ If any of these files are added later, treat them as higher-priority local guida
 - VS Code platform README: `platforms/vscode/README.md`
 - VS Code extension manifest: `platforms/vscode/package.json`
 - VS Code theme JSON: `platforms/vscode/themes/magi-ui-synthwave-vscode-color-theme.json`
+- Slack platform root: `platforms/slack/`
+- Slack platform README: `platforms/slack/README.md`
+- Slack theme import strings: `platforms/slack/themes/magi-ui-synthwave-slack.txt`
 
 ## 4) Build / Lint / Test Commands
 
@@ -124,6 +128,14 @@ No build/test task is configured for VS Code themes. Use JSON parse validation:
 
 ```bash
 python3 -c "import json; json.load(open('platforms/vscode/package.json')); json.load(open('platforms/vscode/themes/magi-ui-synthwave-vscode-color-theme.json')); print('VS Code JSON validation passed')"
+```
+
+### Slack: validation commands (file-based)
+
+No build/test task is configured for Slack themes. Use key-string presence validation:
+
+```bash
+python3 -c "from pathlib import Path; p=Path('platforms/slack/themes/magi-ui-synthwave-slack.txt'); t=p.read_text(); required=['#13051f, #200933, #d21e85, #9963ff']; missing=[k for k in required if k not in t]; print('Slack theme validation passed' if not missing else f'Missing strings: {missing}')"
 ```
 
 Recommended static validation command for theme assets:
@@ -217,6 +229,14 @@ Even though this repo is currently config/resource heavy, apply the following st
 - Keep color values aligned with the shared Magi palette unless divergence is intentional and documented.
 - Validate `package.json` and theme JSON parse successfully after every change.
 
+### 6.6 Slack
+
+- Keep Slack theme assets under `platforms/slack/`.
+- Keep import strings in plain text for easy copy/paste.
+- Preserve the current 4-color import string: `#13051f, #200933, #d21e85, #9963ff`.
+- If legacy compatibility guidance is present, keep the 8-color format string documented alongside the current string.
+- Validate required import string presence after every change.
+
 ## 7) Documentation Rules
 
 - Update `CHANGELOG.md` for user-visible behavior changes.
@@ -242,12 +262,13 @@ Even though this repo is currently config/resource heavy, apply the following st
 
 ## 10) Current Reality Check (as of this file)
 
-- Active targets: JetBrains + Zed + OpenCode + Ghostty + VS Code.
+- Active targets: JetBrains + Zed + OpenCode + Ghostty + VS Code + Slack.
 - JetBrains build tool: Gradle wrapper in `platforms/jetbrains`.
 - JetBrains Gradle wrapper distribution: `8.13`.
 - Zed target is file-only (no build/test runner configured).
 - OpenCode target is file-only (no build/test runner configured).
 - Ghostty target is file-only (no build/test runner configured).
 - VS Code target is file-only (no build/test runner configured).
+- Slack target is file-only (no build/test runner configured).
 - No local Cursor/Copilot rule files in repository.
 - No committed automated tests yet.

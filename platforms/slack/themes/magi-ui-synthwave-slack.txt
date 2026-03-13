@@ -1,0 +1,7 @@
+Magi UI Synthwave Slack import strings
+
+Recommended (current 4-color):
+#13051f, #200933, #d21e85, #9963ff
+
+Legacy compatibility (8-color):
+#13051f,#200933,#d21e85,#ffffff,#541f73,#ffffff,#55c6e1,#9963ff

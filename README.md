@@ -37,6 +37,7 @@ This repository is the continuation of that work — now expanded beyond JetBrai
 - `platforms/opencode` — OpenCode theme JSON
 - `platforms/ghostty` — Ghostty terminal theme
 - `platforms/vscode` — VS Code extension manifest + color theme JSON
+- `platforms/slack` — Slack import-string theme target
 
 Start with platform-specific docs:
 
@@ -45,6 +46,7 @@ Start with platform-specific docs:
 - [OpenCode README](platforms/opencode/README.md)
 - [Ghostty README](platforms/ghostty/README.md)
 - [VS Code README](platforms/vscode/README.md)
+- [Slack README](platforms/slack/README.md)
 
 ---
 
@@ -59,7 +61,8 @@ Start with platform-specific docs:
     ├── zed/
     ├── opencode/
     ├── ghostty/
-    └── vscode/
+    ├── vscode/
+    └── slack/
 ```
 
 Each platform has its own implementation details, install instructions, and
