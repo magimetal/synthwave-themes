@@ -4,6 +4,8 @@ All notable changes to this project are documented in this file.
 
 ## [Unreleased]
 
+## [2.2.0] - 2026-03-13
+
 ### Added
 - Added a new VS Code target at `platforms/vscode` with a local-installable extension manifest (`package.json`) and theme file (`themes/magi-ui-synthwave-vscode-color-theme.json`).
 - Added VS Code platform documentation at `platforms/vscode/README.md` and linked it from the workspace README.
