@@ -4,6 +4,10 @@ All notable changes to this project are documented in this file.
 
 ## [Unreleased]
 
+- No changes yet.
+
+## [2.0.0] - 2026-03-13
+
 ### Changed
 - Modernized the JetBrains theme plugin to current architecture (Islands/New UI support, expanded UI token coverage, bundled color scheme registration, and Gradle-based plugin build scaffold).
 - Restructured the repository into a multi-platform layout with JetBrains assets isolated under `platforms/jetbrains/`.
