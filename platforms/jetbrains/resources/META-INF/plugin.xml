@@ -2,7 +2,7 @@
 <idea-plugin>
   <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
   <id>magi-ui-synthwave</id>
-  <version>1.0.0</version>
+  <version>2.0.0</version>
 
   <!-- Public plugin name should be written in Title Case.
        Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
@@ -12,7 +12,7 @@
   <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
   <vendor email="justinbauer.web@gmail.com" url="https://www.justinbauer.link">Justin Bauer</vendor>
 
-  <idea-version since-build="222" until-build="232.*"/>
+  <idea-version since-build="223"/>
 
   <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
        Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
@@ -26,7 +26,9 @@
   <!-- Short summary of new features and bugfixes in the latest plugin version.
        Displayed on the Plugin Page and IDE Plugin Manager. Simple HTML elements can be included between <![CDATA[  ]]> tags. -->
   <change-notes><![CDATA[
-    Initial release of the theme.
+    v2.0.0: Modernized to current JetBrains theme architecture. Added Islands (New UI) support,
+    expanded UI token coverage, registered standalone bundled color scheme. Minimum IDE version
+    raised to 2022.3 (build 223).
   ]]></change-notes>
 
   <!-- Product and plugin compatibility requirements.
@@ -35,5 +37,6 @@
 
   <extensions defaultExtensionNs="com.intellij">
     <themeProvider id="magi-ui-synthwave" path="/theme/magi-ui-synthwave.theme.json"/>
+    <bundledColorScheme id="Magi-ui-synthwave" path="/magi-ui-synthwave"/>
   </extensions>
 </idea-plugin>

@@ -1,3 +1,15 @@
-out
-*.vscode
-*.idea
+# Build outputs
+out/
+**/build/
+**/.gradle/
+*.jar
+
+# DevKit module file (not needed with Gradle build)
+*.iml
+
+# IDE project files — keep only the useful ones via explicit negation
+.idea/
+!.idea/vcs.xml
+
+# Gradle wrapper jar is a tracked binary exception
+!platforms/jetbrains/gradle/wrapper/gradle-wrapper.jar
