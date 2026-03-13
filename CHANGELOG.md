@@ -4,7 +4,14 @@ All notable changes to this project are documented in this file.
 
 ## [Unreleased]
 
-- No changes yet.
+### Added
+- Added a new Zed target at `platforms/zed` with a local-installable theme file: `themes/magi-ui-synthwave-zed.json`.
+- Added Zed platform documentation at `platforms/zed/README.md` and linked it from the workspace README.
+- Added a new OpenCode target at `platforms/opencode` with a local-installable theme file: `themes/magi-ui-synthwave-opencode.json`.
+- Added OpenCode platform documentation at `platforms/opencode/README.md` and linked it from the workspace README.
+- Added a new Ghostty target at `platforms/ghostty` with a local-installable theme file: `themes/magi-ui-synthwave-ghostty`.
+- Added Ghostty platform documentation at `platforms/ghostty/README.md` and linked it from the workspace README.
+- Expanded `AGENTS.md` with per-platform validation commands and authoring rules for Zed, OpenCode, and Ghostty themes.
 
 ## [2.0.0] - 2026-03-13
 

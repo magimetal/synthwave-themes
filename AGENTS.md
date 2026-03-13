@@ -5,8 +5,11 @@ Guidance for coding agents operating in `magi-uI-synthwave`.
 ## 1) Repository Scope
 
 - This is a **multi-platform theme workspace**.
-- Currently implemented target: `platforms/jetbrains`.
+- Currently implemented targets: `platforms/jetbrains`, `platforms/zed`, `platforms/opencode`, and `platforms/ghostty`.
 - JetBrains target is an IntelliJ Platform theme plugin (resources-first project).
+- Zed target is a file-based theme JSON package (no build toolchain required).
+- OpenCode target is a file-based theme JSON package (no build toolchain required).
+- Ghostty target is a file-based theme config package (no build toolchain required).
 - There is currently no application runtime code (no Kotlin/Java source trees).
 
 ## 2) Rule Sources Discovered
@@ -29,6 +32,15 @@ If any of these files are added later, treat them as higher-priority local guida
 - JetBrains plugin descriptor: `platforms/jetbrains/resources/META-INF/plugin.xml`
 - JetBrains theme JSON: `platforms/jetbrains/resources/theme/magi-ui-synthwave.theme.json`
 - JetBrains editor scheme XML: `platforms/jetbrains/resources/magi-ui-synthwave.xml`
+- Zed platform root: `platforms/zed/`
+- Zed platform README: `platforms/zed/README.md`
+- Zed theme JSON: `platforms/zed/themes/magi-ui-synthwave-zed.json`
+- OpenCode platform root: `platforms/opencode/`
+- OpenCode platform README: `platforms/opencode/README.md`
+- OpenCode theme JSON: `platforms/opencode/themes/magi-ui-synthwave-opencode.json`
+- Ghostty platform root: `platforms/ghostty/`
+- Ghostty platform README: `platforms/ghostty/README.md`
+- Ghostty theme file: `platforms/ghostty/themes/magi-ui-synthwave-ghostty`
 
 ## 4) Build / Lint / Test Commands
 
@@ -76,6 +88,30 @@ Single test method:
 
 - No dedicated linter task (e.g., ktlint/detekt/eslint) is configured right now.
 - Treat `check` plus static file validation as minimum quality gate.
+
+### Zed: validation commands (file-based)
+
+No build/test task is configured for Zed themes. Use JSON parse validation:
+
+```bash
+python3 -c "import json; json.load(open('platforms/zed/themes/magi-ui-synthwave-zed.json')); print('Zed JSON validation passed')"
+```
+
+### OpenCode: validation commands (file-based)
+
+No build/test task is configured for OpenCode themes. Use JSON parse validation:
+
+```bash
+python3 -c "import json; json.load(open('platforms/opencode/themes/magi-ui-synthwave-opencode.json')); print('OpenCode JSON validation passed')"
+```
+
+### Ghostty: validation commands (file-based)
+
+No build/test task is configured for Ghostty themes. Use key-presence validation:
+
+```bash
+python3 -c "from pathlib import Path; p=Path('platforms/ghostty/themes/magi-ui-synthwave-ghostty'); t=p.read_text(); required=['background =','foreground =','cursor-color =','selection-background =','palette = 0=','palette = 15=']; missing=[k for k in required if k not in t]; print('Ghostty theme validation passed' if not missing else f'Missing keys: {missing}')"
+```
 
 Recommended static validation command for theme assets:
 
@@ -126,13 +162,39 @@ Even though this repo is currently config/resource heavy, apply the following st
 - Avoid drive-by refactors in unrelated platform folders.
 - Do not modify binary assets (images/jars) unless required by the task.
 
-## 6) Theme-Specific Rules (JetBrains)
+## 6) Theme-Specific Rules
+
+### 6.1 JetBrains
 
 - Keep `plugin.xml`, `.theme.json`, and editor scheme XML aligned.
 - If `pluginVersion` changes in `gradle.properties`, ensure release docs/changelog are updated.
 - Keep compatibility declarations intentional (`since-build`, `until-build` behavior).
 - Validate color-token references in `.theme.json` after edits.
 - Preserve New UI / Islands compatibility unless explicitly asked to drop it.
+
+### 6.2 Zed
+
+- Keep Zed theme files under `platforms/zed/themes/`.
+- Use Zed schema header in theme JSON (`https://zed.dev/schema/themes/v0.2.0.json`).
+- Keep hex colors alpha-explicit (`#RRGGBBAA`) for consistency.
+- Preserve parity with core Magi palette unless intentionally diverging.
+- Validate JSON parse after every change.
+
+### 6.3 OpenCode
+
+- Keep OpenCode theme files under `platforms/opencode/themes/`.
+- Use OpenCode schema header in theme JSON (`https://opencode.ai/theme.json`).
+- Keep hex colors in 6-digit format (`#RRGGBB`) unless intentionally using ANSI or `none`.
+- Do not add undocumented theme keys; OpenCode schema sets `additionalProperties: false`.
+- Validate JSON parse after every change.
+
+### 6.4 Ghostty
+
+- Keep Ghostty theme files under `platforms/ghostty/themes/`.
+- Use Ghostty config syntax (`key = value`), not JSON.
+- Keep hex colors in 6-digit format (`#RRGGBB`) for consistency.
+- Provide ANSI palette entries at least for indices `0-15`.
+- Validate required keys (`background`, `foreground`, `cursor`, `selection`, palette entries) after every change.
 
 ## 7) Documentation Rules
 
@@ -159,8 +221,11 @@ Even though this repo is currently config/resource heavy, apply the following st
 
 ## 10) Current Reality Check (as of this file)
 
-- Active target: JetBrains only.
-- Build tool: Gradle wrapper in `platforms/jetbrains`.
-- Gradle wrapper distribution: `8.13`.
+- Active targets: JetBrains + Zed + OpenCode + Ghostty.
+- JetBrains build tool: Gradle wrapper in `platforms/jetbrains`.
+- JetBrains Gradle wrapper distribution: `8.13`.
+- Zed target is file-only (no build/test runner configured).
+- OpenCode target is file-only (no build/test runner configured).
+- Ghostty target is file-only (no build/test runner configured).
 - No local Cursor/Copilot rule files in repository.
 - No committed automated tests yet.

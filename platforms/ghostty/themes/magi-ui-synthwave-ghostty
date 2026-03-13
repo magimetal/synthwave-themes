@@ -1,0 +1,36 @@
+# Magi UI Synthwave (Ghostty)
+# Source palette: Magi UI Synthwave JetBrains/Zed/OpenCode targets in this repository.
+
+background = #13051f
+foreground = #ffffff
+
+cursor-color = #d21e85
+cursor-text = #ffffff
+
+selection-background = #541f73
+selection-foreground = #ffffff
+
+split-divider-color = #2d172d
+
+search-background = #541f73
+search-foreground = #ffffff
+search-selected-background = #d21e85
+search-selected-foreground = #ffffff
+
+palette = 0=#13051f
+palette = 1=#d1243b
+palette = 2=#55c6e1
+palette = 3=#f1bf02
+palette = 4=#9963ff
+palette = 5=#d21e85
+palette = 6=#b059b1
+palette = 7=#8c8c8c
+
+palette = 8=#2d172d
+palette = 9=#d1243b
+palette = 10=#55c6e1
+palette = 11=#f1bf02
+palette = 12=#9963ff
+palette = 13=#d21e85
+palette = 14=#b059b1
+palette = 15=#ffffff
