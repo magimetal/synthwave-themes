@@ -4,6 +4,13 @@ All notable changes to this project are documented in this file.
 
 ## [Unreleased]
 
+### Added
+- Added a new VS Code target at `platforms/vscode` with a local-installable extension manifest (`package.json`) and theme file (`themes/magi-ui-synthwave-vscode-color-theme.json`).
+- Added VS Code platform documentation at `platforms/vscode/README.md` and linked it from the workspace README.
+- Added VS Code packaging ignore rules at `platforms/vscode/.vscodeignore`.
+- Added a bundled local-install VS Code extension artifact at `platforms/vscode/magi-ui-synthwave-vscode-0.1.0.vsix`.
+- Expanded `AGENTS.md` with VS Code platform paths, validation command, theme authoring rules, and current target inventory.
+
 ### Changed
 - Rewrote the root `README.md` with a more personal and professional project narrative, design intent, and clearer multi-platform navigation.
 

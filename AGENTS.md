@@ -5,11 +5,12 @@ Guidance for coding agents operating in `magi-uI-synthwave`.
 ## 1) Repository Scope
 
 - This is a **multi-platform theme workspace**.
-- Currently implemented targets: `platforms/jetbrains`, `platforms/zed`, `platforms/opencode`, and `platforms/ghostty`.
+- Currently implemented targets: `platforms/jetbrains`, `platforms/zed`, `platforms/opencode`, `platforms/ghostty`, and `platforms/vscode`.
 - JetBrains target is an IntelliJ Platform theme plugin (resources-first project).
 - Zed target is a file-based theme JSON package (no build toolchain required).
 - OpenCode target is a file-based theme JSON package (no build toolchain required).
 - Ghostty target is a file-based theme config package (no build toolchain required).
+- VS Code target is a manifest + theme JSON package (no build toolchain required).
 - There is currently no application runtime code (no Kotlin/Java source trees).
 
 ## 2) Rule Sources Discovered
@@ -41,6 +42,10 @@ If any of these files are added later, treat them as higher-priority local guida
 - Ghostty platform root: `platforms/ghostty/`
 - Ghostty platform README: `platforms/ghostty/README.md`
 - Ghostty theme file: `platforms/ghostty/themes/magi-ui-synthwave-ghostty`
+- VS Code platform root: `platforms/vscode/`
+- VS Code platform README: `platforms/vscode/README.md`
+- VS Code extension manifest: `platforms/vscode/package.json`
+- VS Code theme JSON: `platforms/vscode/themes/magi-ui-synthwave-vscode-color-theme.json`
 
 ## 4) Build / Lint / Test Commands
 
@@ -111,6 +116,14 @@ No build/test task is configured for Ghostty themes. Use key-presence validation
 
 ```bash
 python3 -c "from pathlib import Path; p=Path('platforms/ghostty/themes/magi-ui-synthwave-ghostty'); t=p.read_text(); required=['background =','foreground =','cursor-color =','selection-background =','palette = 0=','palette = 15=']; missing=[k for k in required if k not in t]; print('Ghostty theme validation passed' if not missing else f'Missing keys: {missing}')"
+```
+
+### VS Code: validation commands (file-based)
+
+No build/test task is configured for VS Code themes. Use JSON parse validation:
+
+```bash
+python3 -c "import json; json.load(open('platforms/vscode/package.json')); json.load(open('platforms/vscode/themes/magi-ui-synthwave-vscode-color-theme.json')); print('VS Code JSON validation passed')"
 ```
 
 Recommended static validation command for theme assets:
@@ -196,6 +209,14 @@ Even though this repo is currently config/resource heavy, apply the following st
 - Provide ANSI palette entries at least for indices `0-15`.
 - Validate required keys (`background`, `foreground`, `cursor`, `selection`, palette entries) after every change.
 
+### 6.5 VS Code
+
+- Keep VS Code theme assets under `platforms/vscode/`.
+- Keep extension metadata in `platforms/vscode/package.json` and theme JSON under `platforms/vscode/themes/`.
+- Use `uiTheme: "vs-dark"` for the dark theme target unless intentionally introducing a separate light variant.
+- Keep color values aligned with the shared Magi palette unless divergence is intentional and documented.
+- Validate `package.json` and theme JSON parse successfully after every change.
+
 ## 7) Documentation Rules
 
 - Update `CHANGELOG.md` for user-visible behavior changes.
@@ -221,11 +242,12 @@ Even though this repo is currently config/resource heavy, apply the following st
 
 ## 10) Current Reality Check (as of this file)
 
-- Active targets: JetBrains + Zed + OpenCode + Ghostty.
+- Active targets: JetBrains + Zed + OpenCode + Ghostty + VS Code.
 - JetBrains build tool: Gradle wrapper in `platforms/jetbrains`.
 - JetBrains Gradle wrapper distribution: `8.13`.
 - Zed target is file-only (no build/test runner configured).
 - OpenCode target is file-only (no build/test runner configured).
 - Ghostty target is file-only (no build/test runner configured).
+- VS Code target is file-only (no build/test runner configured).
 - No local Cursor/Copilot rule files in repository.
 - No committed automated tests yet.

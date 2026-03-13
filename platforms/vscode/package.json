@@ -1,0 +1,28 @@
+{
+  "name": "magi-ui-synthwave-vscode",
+  "displayName": "Magi UI Synthwave",
+  "description": "Magi UI Synthwave dark theme for Visual Studio Code",
+  "version": "0.1.0",
+  "publisher": "magi-ui",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "keywords": [
+    "synthwave",
+    "magi-ui",
+    "dark-theme",
+    "vscode-theme"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Magi UI Synthwave",
+        "uiTheme": "vs-dark",
+        "path": "./themes/magi-ui-synthwave-vscode-color-theme.json"
+      }
+    ]
+  }
+}
