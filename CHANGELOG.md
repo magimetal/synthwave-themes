@@ -8,6 +8,9 @@ All notable changes to this project are documented in this file.
 - Added a new Slack target at `platforms/slack` with documented import strings in `themes/magi-ui-synthwave-slack.txt` (current 4-color and legacy 8-color compatibility formats).
 - Added Slack platform documentation at `platforms/slack/README.md` and linked it from the workspace README.
 - Expanded `AGENTS.md` with Slack platform paths, validation command, theme authoring rules, and current target inventory.
+- Added a new Pi target at `platforms/pi` with local-installable theme JSON at `platforms/pi/themes/magi-ui-synthwave.json`.
+- Added Pi platform documentation at `platforms/pi/README.md` and linked it from the workspace README.
+- Expanded `AGENTS.md` with Pi platform paths, file-based validation guidance, and Pi theme authoring rules.
 
 ## [2.2.0] - 2026-03-13
 

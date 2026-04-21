@@ -5,13 +5,14 @@ Guidance for coding agents operating in `magi-uI-synthwave`.
 ## 1) Repository Scope
 
 - This is a **multi-platform theme workspace**.
-- Currently implemented targets: `platforms/jetbrains`, `platforms/zed`, `platforms/opencode`, `platforms/ghostty`, `platforms/vscode`, and `platforms/slack`.
+- Currently implemented targets: `platforms/jetbrains`, `platforms/zed`, `platforms/opencode`, `platforms/ghostty`, `platforms/vscode`, `platforms/slack`, and `platforms/pi`.
 - JetBrains target is an IntelliJ Platform theme plugin (resources-first project).
 - Zed target is a file-based theme JSON package (no build toolchain required).
 - OpenCode target is a file-based theme JSON package (no build toolchain required).
 - Ghostty target is a file-based theme config package (no build toolchain required).
 - VS Code target is a manifest + theme JSON package (no build toolchain required).
 - Slack target is a plain-text import-string package (no build toolchain required).
+- Pi target is a file-based TUI theme JSON package (no build toolchain required).
 - There is currently no application runtime code (no Kotlin/Java source trees).
 
 ## 2) Rule Sources Discovered
@@ -50,6 +51,9 @@ If any of these files are added later, treat them as higher-priority local guida
 - Slack platform root: `platforms/slack/`
 - Slack platform README: `platforms/slack/README.md`
 - Slack theme import strings: `platforms/slack/themes/magi-ui-synthwave-slack.txt`
+- Pi platform root: `platforms/pi/`
+- Pi platform README: `platforms/pi/README.md`
+- Pi theme JSON: `platforms/pi/themes/magi-ui-synthwave.json`
 
 ## 4) Build / Lint / Test Commands
 
@@ -136,6 +140,27 @@ No build/test task is configured for Slack themes. Use key-string presence valid
 
 ```bash
 python3 -c "from pathlib import Path; p=Path('platforms/slack/themes/magi-ui-synthwave-slack.txt'); t=p.read_text(); required=['#13051f, #200933, #d21e85, #9963ff']; missing=[k for k in required if k not in t]; print('Slack theme validation passed' if not missing else f'Missing strings: {missing}')"
+```
+
+### Pi: validation commands (file-based)
+
+No build/test task is configured for Pi themes. Use JSON semantic validation:
+
+```bash
+python3 - <<'PY'
+import json
+from pathlib import Path
+p = Path('platforms/pi/themes/magi-ui-synthwave.json')
+d = json.loads(p.read_text())
+assert d['name'] == 'magi-ui-synthwave'
+assert d['$schema'] == 'https://raw.githubusercontent.com/badlogic/pi-mono/main/packages/coding-agent/src/modes/interactive/theme/theme-schema.json'
+assert len(d['colors']) == 51
+assert set(d.get('export', {}).keys()) == {'pageBg', 'cardBg', 'infoBg'}
+text = p.read_text()
+assert text.endswith('\n')
+assert '\t' not in text
+print('Pi theme validation passed')
+PY
 ```
 
 Recommended static validation command for theme assets:
@@ -237,6 +262,15 @@ Even though this repo is currently config/resource heavy, apply the following st
 - If legacy compatibility guidance is present, keep the 8-color format string documented alongside the current string.
 - Validate required import string presence after every change.
 
+### 6.7 Pi
+
+- Keep Pi theme assets under `platforms/pi/themes/`.
+- Use Pi theme JSON schema header (`https://raw.githubusercontent.com/badlogic/pi-mono/main/packages/coding-agent/src/modes/interactive/theme/theme-schema.json`).
+- Keep JSON formatting at 2-space indentation with one trailing newline.
+- Preserve theme name `magi-ui-synthwave`, all 51 required `colors` tokens, and exact `export` keys `pageBg`, `cardBg`, and `infoBg`.
+- Keep Pi target file-based only; do not add build scripts, packaging metadata, or undocumented discovery paths unless task explicitly requires it.
+- Validate JSON parse and Pi-specific schema/name/token/export requirements after every change.
+
 ## 7) Documentation Rules
 
 - Update `CHANGELOG.md` for user-visible behavior changes.
@@ -262,7 +296,7 @@ Even though this repo is currently config/resource heavy, apply the following st
 
 ## 10) Current Reality Check (as of this file)
 
-- Active targets: JetBrains + Zed + OpenCode + Ghostty + VS Code + Slack.
+- Active targets: JetBrains + Zed + OpenCode + Ghostty + VS Code + Slack + Pi.
 - JetBrains build tool: Gradle wrapper in `platforms/jetbrains`.
 - JetBrains Gradle wrapper distribution: `8.13`.
 - Zed target is file-only (no build/test runner configured).
@@ -270,5 +304,6 @@ Even though this repo is currently config/resource heavy, apply the following st
 - Ghostty target is file-only (no build/test runner configured).
 - VS Code target is file-only (no build/test runner configured).
 - Slack target is file-only (no build/test runner configured).
+- Pi target is file-only (no build/test runner configured).
 - No local Cursor/Copilot rule files in repository.
 - No committed automated tests yet.

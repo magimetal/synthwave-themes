@@ -38,6 +38,7 @@ This repository is the continuation of that work — now expanded beyond JetBrai
 - `platforms/ghostty` — Ghostty terminal theme
 - `platforms/vscode` — VS Code extension manifest + color theme JSON
 - `platforms/slack` — Slack import-string theme target
+- `platforms/pi` — Pi coding agent TUI theme JSON
 
 Start with platform-specific docs:
 
@@ -47,6 +48,7 @@ Start with platform-specific docs:
 - [Ghostty README](platforms/ghostty/README.md)
 - [VS Code README](platforms/vscode/README.md)
 - [Slack README](platforms/slack/README.md)
+- [Pi README](platforms/pi/README.md)
 
 ---
 
@@ -62,7 +64,8 @@ Start with platform-specific docs:
     ├── opencode/
     ├── ghostty/
     ├── vscode/
-    └── slack/
+    ├── slack/
+    └── pi/
 ```
 
 Each platform has its own implementation details, install instructions, and

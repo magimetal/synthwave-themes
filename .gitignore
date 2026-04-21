@@ -11,5 +11,8 @@ out/
 .idea/
 !.idea/vcs.xml
 
+# Local agent tooling cache
+.pi-lens/
+
 # Gradle wrapper jar is a tracked binary exception
 !platforms/jetbrains/gradle/wrapper/gradle-wrapper.jar
